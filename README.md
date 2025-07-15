@@ -4,17 +4,17 @@
 
 <div align="center">
 
-🌐 [View Live Page]()  
+🌐 [View Live Page](https://ninth-task-registration-system.netlify.app/)  
 
 </div>
 
 This project is a simple example of a **[GO](https://en.wikipedia.org/wiki/Go_(game)) Tournament Registration System**.  
-It is built entirely using **HTML**, **CSS**, and **jQuery**.
 
----
+<img width="1920" height="868" alt="screencapture-ninth-task-registration-system-netlify-app-2025-07-15-17_13_24" src="https://github.com/user-attachments/assets/1a5ae428-84ec-47e9-8f65-ac4a3b5857e7" />
 
 ## Project Description
 
+- It is built entirely using **HTML**, **CSS**, and **jQuery**.
 - All player data is defined as a static **JSON array** (`playerList`) within the JavaScript file.
 - Players are listed in a table.
 - New players can be added using the form fields.
