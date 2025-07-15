@@ -16,18 +16,13 @@ It is built entirely using **HTML**, **CSS**, and **jQuery**.
 ## Project Description
 
 - All player data is defined as a static **JSON array** (`playerList`) within the JavaScript file.
-
 - Players are listed in a table.
-
 - New players can be added using the form fields.
-
 - Each player can be deleted with a single click.
-
 - The status of each player row (`Approved` or `Pending`) can be toggled instantly using a switch.
-
 - The row’s glassmorphism background color changes automatically depending on the status.
-
 - Basic jQuery event examples are used: adding a player, deleting a player, changing player status.
+ 
 
 ## Note
 
