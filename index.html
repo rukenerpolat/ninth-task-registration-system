@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Go Tournament Registration System</title>
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: linear-gradient(
+        to right bottom,
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.7)
+      ),
+      url('https://i.namu.wiki/i/cnqjsHRUl-CPSacgByZEL_ljv0IfP2nqKyI4cOGOe_enO-MfEQA0fRsfPCJFhnIZ9k9QB4_6gjeR7E9tdRjehg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(0,0,0,0.7);
+    }
+
+    table {
+      width: 90%;
+      max-width: 900px;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background: rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      color: #fff;
+    }
+
+    th, td {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 10px;
+      vertical-align: middle;
+    }
+
+    th {
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+    }
+
+    tr.approved {
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    tr.pending {
+      background: rgba(128, 128, 128, 0.3); 
+    }
+
+    input, select, button {
+      padding: 10px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .deleteBtn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 5px;
+      padding: 8px 15px;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+    }
+
+    .deleteBtn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 20px;
+      vertical-align: middle;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      background-color: #555;
+      border-radius: 20px;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 14px;
+      width: 14px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      border-radius: 50%;
+      transition: .4s;
+    }
+
+    .switch input:checked + .slider {
+      background-color: #111;
+    }
+
+    .switch input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    .slider:hover {
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+
+    .status-text {
+      margin-left: 10px;
+      vertical-align: middle;
+      font-weight: bold;
+      color: #eee;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead tr {
+        display: none;
+      }
+      td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+      }
+      td::before {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 45%;
+        white-space: nowrap;
+        font-weight: bold;
+        color: #fff;
+      }
+      td:nth-of-type(1)::before { content: "Player Name"; }
+      td:nth-of-type(2)::before { content: "Country"; }
+      td:nth-of-type(3)::before { content: "Rank"; }
+      td:nth-of-type(4)::before { content: "Status"; }
+      td:nth-of-type(5)::before { content: "Delete"; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Go Tournament Registration System</h1>
+
+  <div>
+    <input type="text" id="playerName" placeholder="Player Name" />
+    <input type="text" id="playerCountry" placeholder="Country" />
+    <select id="playerRank">
+      <option value="" disabled selected>Select Rank</option>
+      <option value="20 Kyu">20 Kyu</option>
+      <option value="15 Kyu">15 Kyu</option>
+      <option value="10 Kyu">10 Kyu</option>
+      <option value="5 Kyu">5 Kyu</option>
+      <option value="1 Kyu">1 Kyu</option>
+      <option value="1 Dan">1 Dan</option>
+      <option value="2 Dan">2 Dan</option>
+      <option value="3 Dan">3 Dan</option>
+    </select>
+    <button id="addPlayer">Add Player</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Player Name</th>
+        <th>Country</th>
+        <th>Rank</th>
+        <th>Status</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody id="playerTable"></tbody>
+  </table>
+
+  <script>
+    let playerList = [
+        { "id": 1, "name": "Leanne Graham", "country": "England", "rank": "3 Dan", "status": "Approved" },
+        { "id": 2, "name": "Ervin Howell", "country": "South Korea", "rank": "1 Kyu", "status": "Approved" },
+        { "id": 3, "name": "Clementine Bauch", "country": "Japan", "rank": "3 Dan", "status": "Pending" },
+        { "id": 4, "name": "Patricia Lebsack", "country": "South Korea", "rank": "5 Kyu", "status": "Approved" },
+        { "id": 5, "name": "Chelsey Dietrich", "country": "Germany", "rank": "1 Dan", "status": "Pending" }
+    ];
+
+    function renderTable() {
+      let tbody = $("#playerTable");
+      tbody.empty();
+      playerList.forEach(player => {
+        let row = `
+          <tr class="${player.status === 'Approved' ? 'approved' : 'pending'}" data-id="${player.id}">
+            <td>${player.name}</td>
+            <td>${player.country}</td>
+            <td>${player.rank}</td>
+            <td>
+              <label class="switch">
+                <input type="checkbox" class="statusCheckbox" ${player.status === 'Approved' ? 'checked' : ''}>
+                <span class="slider"></span>
+              </label>
+              <span class="status-text">${player.status}</span>
+            </td>
+            <td><button class="deleteBtn">Delete</button></td>
+          </tr>
+        `;
+        tbody.append(row);
+      });
+    }
+
+    $(document).ready(function() {
+      renderTable();
+
+      $("#addPlayer").click(function() {
+        let name = $("#playerName").val().trim();
+        let country = $("#playerCountry").val().trim();
+        let rank = $("#playerRank").val();
+
+        if (name && country && rank) {
+          let newPlayer = {
+            id: Date.now(),
+            name: name,
+            country: country,
+            rank: rank,
+            status: "Pending"
+          };
+          playerList.push(newPlayer);
+          renderTable();
+          $("#playerName").val("");
+          $("#playerCountry").val("");
+          $("#playerRank").val("");
+        } else {
+          alert("Please fill in all fields and select a rank.");
+        }
+      });
+
+      $(document).on("click", ".deleteBtn", function(e) {
+        e.stopPropagation();
+        let id = $(this).closest("tr").data("id");
+        playerList = playerList.filter(p => p.id !== id);
+        renderTable();
+      });
+
+      $(document).on("change", ".statusCheckbox", function() {
+        let id = $(this).closest("tr").data("id");
+        let isChecked = $(this).is(":checked");
+        playerList = playerList.map(p => {
+          if (p.id === id) {
+            p.status = isChecked ? "Approved" : "Pending";
+          }
+          return p;
+        });
+        renderTable();
+      });
+    });
+  </script>
+</body>
+</html>
