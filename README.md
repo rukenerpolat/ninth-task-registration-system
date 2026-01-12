@@ -13,7 +13,6 @@ This project is a simple example of a **[GO](https://en.wikipedia.org/wiki/Go_(g
 <img width="1920" height="868" alt="screencapture-ninth-task-registration-system-netlify-app-2025-07-15-17_13_24" src="https://github.com/user-attachments/assets/1a5ae428-84ec-47e9-8f65-ac4a3b5857e7" />
 
 ## Project Description
-
 - It is built entirely using **HTML**, **CSS**, and **jQuery**.
 - All player data is defined as a static **JSON array** (`playerList`) within the JavaScript file.
 - Players are listed in a table.
@@ -23,17 +22,17 @@ This project is a simple example of a **[GO](https://en.wikipedia.org/wiki/Go_(g
 - The row’s glassmorphism background color changes automatically depending on the status.
 - Basic jQuery event examples are used: adding a player, deleting a player, changing player status.
  
-
-## Note
-
+## Note   
 - The `localStorage` feature has **not been added**, as required by the case. Data is only stored temporarily in the page memory.
 
 - [JSONPlaceholder](https://jsonplaceholder.typicode.com/users) — Player names have been sourced from here.
 
-<br>
-
-<b><em>Ruken ERPOLAT</em></b>
+### <img src="https://media.giphy.com/media/mGcNjsfWAjY5AEZNw6/giphy.gif" width="40"> Let’s connect:
 
 [![LinkedIn](https://img.shields.io/badge/-LinkedIn-827a67?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/rukenerpolat)
 [![Medium](https://img.shields.io/badge/-Medium-827a67?style=flat&logo=medium&logoColor=white)](https://medium.com/@rukenerpolat)
+[![Frontend Mentor](https://img.shields.io/badge/-Frontend%20Mentor-827a67?style=flat&logo=frontendmentor&logoColor=white)](https://www.frontendmentor.io/profile/rukenerpolat)
 [![GitHub](https://img.shields.io/badge/-GitHub-827a67?style=flat&logo=github&logoColor=white)](https://github.com/rukenerpolat)
+
+Thank you for your visit! 🖖     
+<b><em>Ruken ERPOLAT</em></b> 
